@@ -1,17 +1,13 @@
 
 <template>
   <div>
-    <router-view></router-view>
-    <router-link to="/home">首页</router-link>
-    <router-link to="/favor">收藏</router-link>
-    <router-link to="/message">信息</router-link>
-    <router-link to="/order">订单</router-link>
-    APP.vue
+    <router-view />
+    <tab-bar />
   </div>
 </template>
 
 <script setup>
-
+import tabBar from '@/components/tab-bar/tab-bar.vue'
 </script>
 
 
