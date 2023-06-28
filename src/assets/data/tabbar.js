@@ -14,13 +14,13 @@ const tabbarData = [
     {
         text: "订单",
         image: "tabbar/tab_order.png",
-        imageActive: "abbar/tab_order_active.png",
+        imageActive: "tabbar/tab_order_active.png",
         path: "/order"
     },
     {
         text: "信息",
         image: "tabbar/tab_message.png",
-        imageActive: "tabbar/tab_message_active.png",
+        imageActive: "tabbar/tab_message.png",
         path: "/message"
     }
 ]
