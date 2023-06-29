@@ -11,8 +11,9 @@
             </van-tabs>
         </div>
         <div class="content">
-            <template v-for="(item, index) in currentGroup">
-                <div>{{ item }}</div>
+            <!-- <city-group :group-data="currentGroup" /> -->
+            <template v-for="(value, key, index) in allCities">
+                <city-group v-show="tabActive === key" :group-data="value" />
             </template>
         </div>
     </div>
@@ -23,6 +24,7 @@ import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useCityStore from '@/stores/modules/city.js'
 import { storeToRefs } from 'pinia';
+import CityGroup from './cpns/city-group.vue'
 
 const searchValue = ref("")
 const tabActive = ref()
@@ -39,7 +41,7 @@ const { allCities } = storeToRefs(cityStore)
 
 const currentGroup = computed(() => allCities.value[tabActive.value])
 
-
+console.log(currentGroup);
 /* 这个位置发送网络请求有两个缺点
 1.如果网络请求太多，那么页面组件中就包含了大量的对于网络请求和数据处理的逻辑
 2.如果页面封装了很多子组件，子组件需要这些数据，我们必须一步步将数据传递过去
@@ -66,6 +68,11 @@ const currentGroup = computed(() => allCities.value[tabActive.value])
     // .content {
     //     margin-top: 98px;
     // }
+    // content的内容设置了定位，会覆盖top中的内容，解决办法 给top设置相对定位和z-index属性
+    .top {
+        position: relative;
+        z-index: 9;
+    }
 
     // 方法二
     .content {
