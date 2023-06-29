@@ -8,3 +8,13 @@
 body {
   font-size: 14px;
 }
+
+.hiddenTabBar {
+  position: relative;
+  /* 设置相对定位以后才能设置z-index的值*/
+  z-index: 99;
+  height: 100vh;
+  background-color: #fff;
+  /* 只在当前高度滚动，不设置的话是整个页面滚动 */
+  overflow-y: auto;
+}
