@@ -4,52 +4,19 @@
         <div class="banner">
             <img src="@/assets/img/home/banner.webp" alt="">
         </div>
-        <div class="location">
-            <div class="city">广州</div>
-            <div class="position">
-                <div class="text">我的位置</div>
-                <img src="@/assets/img/home/icon_location.png" alt="">
-            </div>
-        </div>
+        <Home-search-box />
     </div>
 </template>
 
 <script setup>
 import HomeNavBar from "./cpns/home-nav-bar.vue"
-
+import HomeSearchBox from "./cpns/home-search-box.vue"
 </script>
 
 <style lang="less" scoped>
 .banner {
     img {
         width: 100%;
-    }
-}
-
-.location {
-    display: flex;
-    align-items: center;
-    height: 44px;
-    padding: 0 5px;
-
-    .city {
-        flex: 1;
-    }
-
-    .position {
-        display: flex;
-        align-items: center;
-        width: 74px;
-
-        .text {
-            font-size: 12px;
-        }
-
-        img {
-            width: 18px;
-            height: 18px;
-            margin-left: 5px;
-        }
     }
 }
 </style>
