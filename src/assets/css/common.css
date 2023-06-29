@@ -3,6 +3,9 @@
 
   /* 全局修改: 任何地方只要用到-van-tabbar-item-icon-size都会被修改掉 */
   /* --van-tabbar-item-icon-size: 30px !important; */
+
+  /* 全局定义搜索框颜色覆盖组件内的样式 */
+  --van-gray-6: var(--primary-color);
 }
 
 body {
