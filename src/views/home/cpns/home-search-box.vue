@@ -50,16 +50,10 @@ import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router';
 
 import useCityStore from '@/stores/modules/city.js'
+import useHomeStore from '@/stores/modules/home';
 import { formatMonthDay, getDiffDays } from '@/utils/format_date'
 
 const router = useRouter()
-
-defineProps({
-    hotSuggests: {
-        type: Array,
-        default: () => []
-    }
-})
 
 // 位置/城市
 const cityClick = () => {
@@ -105,6 +99,9 @@ const onConfirm = (value) => {
 }
 
 // 热门建议
+const homeStore = useHomeStore()
+const { hotSuggests } = storeToRefs(homeStore)
+
 
 </script>
 
@@ -196,7 +193,7 @@ const onConfirm = (value) => {
     .tag {
         font-size: 12px;
         padding: 4px 8px;
-        margin: 3px;
+        margin: 5px;
         border-radius: 14px;
         background-color: #f1f3f5;
     }
