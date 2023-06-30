@@ -6,6 +6,7 @@
         </div>
         <home-search-box />
         <home-categories />
+        <home-content />
     </div>
 </template>
 
@@ -14,6 +15,7 @@ import HomeNavBar from "./cpns/home-nav-bar.vue"
 import HomeSearchBox from "./cpns/home-search-box.vue"
 import useHomeStore from "@/stores/modules/home";
 import HomeCategories from "./cpns/home-categories.vue"
+import homeContent from "./cpns/home-content.vue";
 
 // 发送网络请求
 const homeStore = useHomeStore()

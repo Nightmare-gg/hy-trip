@@ -3,7 +3,7 @@
         <template v-for="(item, index) in categories" :key="item.id">
             <div class="item">
                 <img :src="item.pictureUrl" alt="">
-                <div .class="text">{{ item.title }}</div>
+                <div class="text">{{ item.title }}</div>
             </div>
         </template>
 
@@ -33,6 +33,7 @@ const { categories } = storeToRefs(homeStore)
     }
 
     .item {
+        // 空间不够时，缩小，默认为1
         flex-shrink: 0;
         display: flex;
         flex-direction: column;
