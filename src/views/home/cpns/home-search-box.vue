@@ -27,24 +27,41 @@
         <!-- 日历 -->
         <van-calendar v-model:show="showCalendar" type="range" :round="false" @confirm="onConfirm" color="#ff9854"
             :show-confirm="false" />
+        <!-- 人数部分 -->
         <div class="item price-counter bottom-gray-line">
             <div class="start">价格不限</div>
             <div class="end">人数不限</div>
         </div>
+        <!-- 关键字 -->
         <div class="item keyword">关键字/位置/名宿名</div>
+        <!-- 热门建议 -->
+        <div class="item hot-suggest">
+            <template v-for="(item, index) in hotSuggests" :key="index">
+                <span class="tag" :style="{ color: item.tagText.color, background: item.tagText.background }">{{
+                    item.tagText.text }}</span>
+            </template>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router';
-import useCityStore from '@/stores/modules/city.js'
 import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router';
+
+import useCityStore from '@/stores/modules/city.js'
 import { formatMonthDay, getDiffDays } from '@/utils/format_date'
 
 const router = useRouter()
-// 位置/城市
 
+defineProps({
+    hotSuggests: {
+        type: Array,
+        default: () => []
+    }
+})
+
+// 位置/城市
 const cityClick = () => {
     router.push("/city")
 }
@@ -86,6 +103,8 @@ const onConfirm = (value) => {
     // 隐藏日历
     showCalendar.value = false
 }
+
+// 热门建议
 
 </script>
 
@@ -169,5 +188,17 @@ const onConfirm = (value) => {
         }
     }
 
+}
+
+.hot-suggest {
+    margin: 10px 0;
+
+    .tag {
+        font-size: 12px;
+        padding: 4px 8px;
+        margin: 3px;
+        border-radius: 14px;
+        background-color: #f1f3f5;
+    }
 }
 </style>
