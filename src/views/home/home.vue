@@ -16,6 +16,7 @@ import useHomeStore from "@/stores/modules/home";
 // 发送网络请求
 const homeStore = useHomeStore()
 homeStore.fetchHotSuggestData()
+homeStore.fetchCategoriesData()
 
 </script>
 
