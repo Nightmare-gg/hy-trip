@@ -2,8 +2,8 @@
 <template>
   <div>
     <router-view />
-    <!-- <tab-bar v-if="!route.meta.hiddenTabBar" /> -->
-    <tab-bar />
+    <tab-bar v-if="!route.meta.hiddenTabBar" />
+    <!-- <tab-bar /> -->
   </div>
 </template>
 

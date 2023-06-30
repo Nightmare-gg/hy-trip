@@ -41,6 +41,10 @@
                     item.tagText.text }}</span>
             </template>
         </div>
+        <!-- 搜索按钮 -->
+        <div class="item search-btn">
+            <div class="btn" @click="searchBtnClick">开始搜索</div>
+        </div>
     </div>
 </template>
 
@@ -102,6 +106,17 @@ const onConfirm = (value) => {
 const homeStore = useHomeStore()
 const { hotSuggests } = storeToRefs(homeStore)
 
+// 点击搜索
+const searchBtnClick = () => {
+    router.push({
+        path: '/search',
+        query: {
+            startDate: startDate.value,
+            endDate: endDate.value,
+            currentCity: currentCity.value.cityName
+        }
+    })
+}
 
 </script>
 
@@ -188,6 +203,7 @@ const { hotSuggests } = storeToRefs(homeStore)
 }
 
 .hot-suggest {
+    height: auto;
     margin: 10px 0;
 
     .tag {
@@ -196,6 +212,21 @@ const { hotSuggests } = storeToRefs(homeStore)
         margin: 5px;
         border-radius: 14px;
         background-color: #f1f3f5;
+    }
+}
+
+.search-btn {
+    .btn {
+        width: 342px;
+        height: 38px;
+        max-height: 50px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 38px;
+        text-align: center;
+        border-radius: 20px;
+        color: #fff;
+        background-image: var(--theme-linear-gradient);
     }
 }
 </style>
