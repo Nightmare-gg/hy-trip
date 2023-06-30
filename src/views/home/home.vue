@@ -21,6 +21,7 @@ import homeContent from "./cpns/home-content.vue";
 const homeStore = useHomeStore()
 homeStore.fetchHotSuggestData()
 homeStore.fetchCategoriesData()
+homeStore.fetchHouseListData()
 
 </script>
 
