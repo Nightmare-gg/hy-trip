@@ -13,14 +13,14 @@
             <div class="start">
                 <div class="date">
                     <span class="tip">入住</span>
-                    <span class="time">{{ startDate }}</span>
+                    <span class="time">{{ startDateStr }}</span>
                 </div>
             </div>
             <div class="stay">共{{ stayCount }}晚</div>
             <div class="end">
                 <div class="date">
                     <span class="tip">离店</span>
-                    <span class="time">{{ endDate }}</span>
+                    <span class="time">{{ endDateStr }}</span>
                 </div>
             </div>
         </div>
@@ -49,12 +49,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router';
 
-import useCityStore from '@/stores/modules/city.js'
+import useCityStore from '@/stores/modules/city';
 import useHomeStore from '@/stores/modules/home';
+import useMainStore from '@/stores/modules/main';
 import { formatMonthDay, getDiffDays } from '@/utils/format_date'
 
 const router = useRouter()
@@ -80,14 +81,13 @@ const cityStore = useCityStore();
 const { currentCity } = storeToRefs(cityStore)
 
 // 当前日期范围的处理
-const nowDate = new Date()
-const newDate = new Date()
-newDate.setDate(nowDate.getDate() + 1)
+const mainStore = useMainStore()
+const { startDate, endDate } = storeToRefs(mainStore)
 
-const startDate = ref(formatMonthDay(nowDate))
-const endDate = ref(formatMonthDay(newDate))
+const startDateStr = computed(() => formatMonthDay(startDate.value))
+const endDateStr = computed(() => formatMonthDay(endDate.value))
 // 入住天数
-const stayCount = ref(getDiffDays(nowDate, newDate))
+const stayCount = ref(getDiffDays(startDate.value, endDate.value))
 // 控制日历的显示与隐藏
 const showCalendar = ref(false)
 
@@ -95,8 +95,8 @@ const onConfirm = (value) => {
     //    设置日期
     const selectStartDate = value[0]
     const selectEndDate = value[1]
-    startDate.value = formatMonthDay(selectStartDate)
-    endDate.value = formatMonthDay(selectEndDate)
+    mainStore.startDate = selectStartDate
+    mainStore.endDate = selectEndDate
     stayCount.value = getDiffDays(selectStartDate, selectEndDate)
     // 隐藏日历
     showCalendar.value = false
