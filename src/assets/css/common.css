@@ -7,6 +7,7 @@
 
   /* 全局定义搜索框颜色覆盖组件内的样式 */
   --van-gray-6: var(--primary-color);
+  --van-primary-color: var(--primary-color);
 }
 
 body {
