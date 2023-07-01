@@ -7,6 +7,7 @@
         <home-search-box />
         <home-categories />
         <home-content />
+        <button @click="loadMore">加载更多</button>
     </div>
 </template>
 
@@ -23,9 +24,18 @@ homeStore.fetchHotSuggestData()
 homeStore.fetchCategoriesData()
 homeStore.fetchHouseListData()
 
+const loadMore = () => {
+    homeStore.fetchHouseListData()
+    console.log("加载更多");
+}
+
 </script>
 
 <style lang="less" scoped>
+.home {
+    padding-bottom: 60px;
+}
+
 .banner {
     img {
         width: 100%;
