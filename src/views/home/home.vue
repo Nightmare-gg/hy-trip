@@ -5,13 +5,14 @@
             <img src="@/assets/img/home/banner.webp" alt="">
         </div>
         <home-search-box />
+        <h2 v-if="isShowSearch">我是搜索框</h2>
         <home-categories />
         <home-content />
     </div>
 </template>
 
 <script setup>
-import { watch } from 'vue'
+import { watch, ref, computed } from 'vue'
 
 import HomeNavBar from "./cpns/home-nav-bar.vue"
 import HomeSearchBox from "./cpns/home-search-box.vue"
@@ -34,7 +35,7 @@ homeStore.fetchHouseListData()
 // })
 
 // 方法二：监听变量实现
-const { isReachBottom } = useScroll()
+const { isReachBottom, scrollTop } = useScroll()
 // watch监听当值发生改变时重新发送请求
 watch(isReachBottom, (newValue) => {
     if (newValue) {
@@ -44,6 +45,20 @@ watch(isReachBottom, (newValue) => {
         })
     }
 })
+// 监听属性
+// const isShowSearch = ref(false)
+
+// watch(scrollTop, (newTop) => {
+//     isShowSearch.value = newTop > 100
+// })
+// 使用计算属性优化
+// 定义的可响应数据依赖与另一个可响应数据时，使用计算属性
+const isShowSearch = computed(() => {
+    return scrollTop.value > 100
+})
+
+
+
 
 </script>
 
