@@ -5,7 +5,9 @@
             <img src="@/assets/img/home/banner.webp" alt="">
         </div>
         <home-search-box />
-        <h2 v-if="isShowSearch">我是搜索框</h2>
+        <div v-if="isShowSearchBar" class="search-bar">
+            <search-bar />
+        </div>
         <home-categories />
         <home-content />
     </div>
@@ -19,6 +21,8 @@ import HomeSearchBox from "./cpns/home-search-box.vue"
 import useHomeStore from "@/stores/modules/home";
 import HomeCategories from "./cpns/home-categories.vue"
 import homeContent from "./cpns/home-content.vue";
+
+import SearchBar from "@/components/search-bar/search-bar.vue"
 
 import useScroll from "@/hooks/useScroll"
 
@@ -53,8 +57,8 @@ watch(isReachBottom, (newValue) => {
 // })
 // 使用计算属性优化
 // 定义的可响应数据依赖与另一个可响应数据时，使用计算属性
-const isShowSearch = computed(() => {
-    return scrollTop.value > 100
+const isShowSearchBar = computed(() => {
+    return scrollTop.value > 360
 })
 
 
@@ -71,5 +75,16 @@ const isShowSearch = computed(() => {
     img {
         width: 100%;
     }
+}
+
+.search-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    height: 45px;
+    padding: 16px 16px 10px;
+    background-color: #fff;
 }
 </style>
