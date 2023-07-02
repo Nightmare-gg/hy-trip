@@ -4,6 +4,7 @@
         <div class="main" v-if="mainPart">
             <detail-swipe :swipe-data="mainPart.topModule.housePicture.housePics" />
             <detail-infos :top-infos="mainPart.topModule" />
+            <detail-facility :house-facility="mainPart.dynamicModule.facilityModule.houseFacility" />
         </div>
     </div>
 </template>
@@ -15,6 +16,7 @@ import { ref, computed } from 'vue';
 
 import DetailSwipe from './cpns/detail_01-swipe.vue'
 import DetailInfos from './cpns/detail_02-infos.vue'
+import DetailFacility from './cpns/detail_03-facility.vue'
 
 const route = useRoute()
 const router = useRouter()
