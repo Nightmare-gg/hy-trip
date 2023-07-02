@@ -10,6 +10,7 @@
                 <!-- <div class="indicator">{{ active + 1 }}/{{ swipeData.length }} - {{ total }}</div> -->
                 <div class="indicator">
                     <template v-for="(value, key, index) in swipeGroup" :key="index">
+                        <!-- active为当前索引 -->
                         <span class="item" :class="{ active: swipeData[active]?.enumPictureCategory == key }">
                             <span class="text">{{ getName(value[0].title) }}</span>
                             <span class="count" v-if="swipeData[active]?.enumPictureCategory == key">
@@ -51,7 +52,6 @@ for (const item of props.swipeData) {
     valueArray.push(item)
 }
 
-console.log(swipeGroup);
 
 // 去除【】和:
 // 方法一
@@ -66,6 +66,7 @@ const getName = (name) => {
 }
 
 const getCategoryIndex = (item) => {
+    // 拿到当前组
     const valueArray = swipeGroup[item.enumPictureCategory]
     return valueArray.findIndex(data => data === item) + 1
 }
