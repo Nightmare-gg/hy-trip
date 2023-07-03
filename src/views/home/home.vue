@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div class="home" ref="homeRef">
         <home-nav-bar />
         <div class="banner">
             <img src="@/assets/img/home/banner.webp" alt="">
@@ -13,8 +13,14 @@
     </div>
 </template>
 
+<script>
+export default {
+    name: 'home'
+}
+</script>
+
 <script setup>
-import { watch, ref, computed } from 'vue'
+import { watch, ref, computed, onActivated } from 'vue'
 
 import HomeNavBar from "./cpns/home-nav-bar.vue"
 import HomeSearchBox from "./cpns/home-search-box.vue"
@@ -38,8 +44,9 @@ homeStore.fetchHouseListData()
 //     homeStore.fetchHouseListData()
 // })
 
+const homeRef = ref()
 // 方法二：监听变量实现
-const { isReachBottom, scrollTop } = useScroll()
+const { isReachBottom, scrollTop } = useScroll(homeRef)
 // watch监听当值发生改变时重新发送请求
 watch(isReachBottom, (newValue) => {
     if (newValue) {
@@ -61,13 +68,22 @@ const isShowSearchBar = computed(() => {
     return scrollTop.value > 360
 })
 
-
+// 切换回当前页面保持之前的位置
+onActivated(() => {
+    homeRef.value?.scrollTo({
+        top: scrollTop.value
+    })
+})
 
 
 </script>
 
 <style lang="less" scoped>
 .home {
+    height: 100vh;
+    overflow-y: auto;
+    // 给home设置了panding所以要转为标准盒模型，将pandding算再100vh里面
+    box-sizing: content-box;
     padding-bottom: 60px;
 }
 
