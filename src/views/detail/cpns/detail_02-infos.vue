@@ -34,18 +34,17 @@
     </div>
 </template>
   
-
 <script setup>
+
 defineProps({
     topInfos: {
         type: Object,
         default: () => ({})
-
     }
 })
 
 </script>
-
+  
 <style lang="less" scoped>
 .infos {
     padding: 16px;
@@ -113,3 +112,4 @@ defineProps({
     }
 }
 </style>
+  
